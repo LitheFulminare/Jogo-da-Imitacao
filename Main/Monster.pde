@@ -1,4 +1,4 @@
-class Monster // the body and the head doesn't move
+class MonsterBody // the body and the head doesn't move
 {
   private int x; 
   private int y;
@@ -6,7 +6,7 @@ class Monster // the body and the head doesn't move
   private int w = 100;
   private int h = 100;
   
-  Monster(int x, int y)
+  MonsterBody(int x, int y)
   {
     this.x = x;
     this.y = y;

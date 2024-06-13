@@ -10,7 +10,7 @@ int startTime;
 boolean victory = false;
 boolean gameover = false;
 
-Monster monster = new Monster(200,200);
+MonsterBody monsterBody = new MonsterBody(200,200);
 
 void setup()
 {
@@ -80,6 +80,7 @@ void renderGame()
 {
   background(0);
   text("Tempo restante: " + secondsDown, 40, 40);  
+  monsterBody.render();
 }
 
 void renderFinalScreen()
