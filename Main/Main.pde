@@ -1,11 +1,14 @@
-String screen = "menu"; // starts on "menu", go to "game", ends on "gameover"
+String screen = "menu"; // starts on "menu", go to "game", ends on "final screen"
 
 // countdown timer
 int secondsDown;
 int timer;
-int interval = 30000; //  it's in milliseconds
+int interval = 5000; //  it's in milliseconds
 
 int startTime;
+
+boolean victory = false;
+boolean gameover = false;
 
 Monster monster = new Monster(200,200);
 
@@ -39,7 +42,10 @@ void render()
   {
     renderGame();
   }
-  
+  if(screen == "final screen")
+  {
+    renderFinalScreen();
+  }
 }
 
 void renderMenu()
@@ -60,9 +66,10 @@ void updateGame()
   //int elapsedTime = millis() - startTime;
   
   
-  if (millis() - timer > interval) 
+  if (millis() - timer > interval) // when the countdown reaches 0, defeat
   {
-   startTime = millis();
+   //startTime = millis();
+   screen = "final screen";
    //text(secondsDown, 150, 195);
   }
   int elapsedSeconds = (millis() - startTime) / 1000;
@@ -75,11 +82,25 @@ void renderGame()
   text("Tempo restante: " + secondsDown, 40, 40);  
 }
 
+void renderFinalScreen()
+{
+  background(0,100,150);
+  text("perdeu paizão", 40, 40);
+}
+
 void keyPressed()
 {
   if(screen == "menu") // sets screen to 'game'
   {
     startGame();
+  }
+  if(screen == "game")
+  {
+    
+  }
+  if(screen == "final screen")
+  {
+    screen = "menu";
   }
 }
 
@@ -88,5 +109,13 @@ void mousePressed()
   if(screen == "menu") // sets screen to 'game'
   {
     startGame();
+  }
+  if(screen == "game")
+  {
+    
+  }
+  if(screen == "final screen")
+  {
+    screen = "menu";
   }
 }
