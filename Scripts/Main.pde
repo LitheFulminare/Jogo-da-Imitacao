@@ -26,11 +26,13 @@ PImage monsterBodyImg;
 
 PImage playerBodyImg;
 PImage playerRightArmImg;
+PImage playerLeftArmImg;
 
 MonsterBody monsterBody = new MonsterBody(450,50);
 
 PlayerBody playerBody = new PlayerBody(-70, 50);
-PlayerRightArm playerRightArm = new PlayerRightArm(600, 600);
+PlayerRightArm playerRightArm = new PlayerRightArm(160, 310);
+PlayerLeftArm playerLeftArm = new PlayerLeftArm(210, 310);
 
 void setup()
 {
@@ -50,7 +52,7 @@ void setup()
   // player sprites
   playerBodyImg = loadImage("1- Tronco e Pernas Player.png");
   playerRightArmImg = loadImage("2- Braço direito player.png");
-  
+  playerLeftArmImg = loadImage("");
 }
 
 void draw()
@@ -121,6 +123,7 @@ void renderGame()
   
   playerBody.render();
   playerRightArm.render();
+  playerLeftArm.render();
 }
 
 void renderFinalScreen()
@@ -148,15 +151,40 @@ void keyPressed()
   {
     if(keyCode == LEFT)
     {
-      playerRightArm.rotating = true;
-      playerRightArm.inverted = false;
+      if(selectedLimb == 1)
+      {
+        playerRightArm.rotating = true;
+        playerRightArm.inverted = false;
+      }      
     }
     if(keyCode == RIGHT)
     {
-      playerRightArm.rotating = true;
-      playerRightArm.inverted = true;
+      if(selectedLimb == 2)
+      {
+        playerRightArm.rotating = true;
+        playerRightArm.inverted = true;
+      }     
+    }
+    if(keyCode == ENTER)
+    {
+      //playerRightArm.angle = 2*PI; 
+      //println(playerRightArm.angle);
+    }
+    if(keyCode == TAB)
+    {
+      if(selectedLimb == 1)
+      {
+        selectedLimb = 2;
+        //println("new: " + selectedLimb);
+      }
+      else
+      {
+        selectedLimb = 1;
+        //println("new: " + selectedLimb);
+      }
     }
   }
+  
   if(screen == "final screen")
   {
     screen = "menu";
