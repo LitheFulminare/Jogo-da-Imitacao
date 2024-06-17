@@ -1,9 +1,11 @@
+//MonsterBody(260,0); made the body centered relative to its bg
+
 String screen = "menu"; // starts on "menu", go to "game", ends on "final screen"
 
 // countdown timer
 int secondsDown;
 int timer;
-int interval = 5000; //  it's in milliseconds
+int interval = 30 * 1000; //  it's in milliseconds
 
 int startTime;
 
@@ -15,16 +17,24 @@ PImage gameScreen;
 PImage victoryScreen;
 PImage defeatScreen;
 
-MonsterBody monsterBody = new MonsterBody(200,200);
+PImage monsterBodyImg;
+PImage playerBodyImg;
+
+MonsterBody monsterBody = new MonsterBody(260,0);
+PlayerBody playerBody = new PlayerBody(-260, 0);
 
 void setup()
 {
   size(1020, 760);
   textSize(40);
+  
   titleScreen = loadImage("titleScreen.png");
   gameScreen = loadImage("gameScreen.png");
   defeatScreen = loadImage("defeatScreen.png");
   victoryScreen = loadImage("victoryScreen.png");
+  
+  monsterBodyImg = loadImage("1- Tronco e Pernas.png");
+  playerBodyImg = loadImage("1- Tronco e Pernas Player.png");
 }
 
 void draw()
@@ -92,6 +102,7 @@ void renderGame()
   image(gameScreen, 0, 0, width, height);  
   text("Tempo restante: " + secondsDown, 40, 40);  
   monsterBody.render();
+  playerBody.render();
 }
 
 void renderFinalScreen()

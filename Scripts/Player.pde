@@ -1,4 +1,4 @@
-class MonsterBody // the body and the head don't move
+class PlayerBody // the body and the head don't move
 {
   private int x; 
   private int y;
@@ -8,7 +8,7 @@ class MonsterBody // the body and the head don't move
   
   
   
-  MonsterBody(int x, int y)
+  PlayerBody(int x, int y)
   {
     this.x = x;
     this.y = y;
@@ -22,7 +22,7 @@ class MonsterBody // the body and the head don't move
   
   void render()
   {
-    image(monsterBodyImg, x, y, width, height);
+    image(playerBodyImg, x, y, width, height);
     //rect(x,y,w,h);
   }
 }
