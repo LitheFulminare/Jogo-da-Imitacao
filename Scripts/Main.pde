@@ -9,8 +9,13 @@ int interval = 30 * 1000; //  it's in milliseconds
 
 int startTime;
 
+int selectedLimb = 1; // 1 = right arm, 2 = left arm
+
 boolean victory = false;
 boolean gameover = false;
+
+//boolean LDown = false;
+//boolean RDown = false;
 
 PImage titleScreen;
 PImage gameScreen;
@@ -141,11 +146,31 @@ void keyPressed()
   }
   if(screen == "game")
   {
-    
+    if(keyCode == LEFT)
+    {
+      playerRightArm.rotating = true;
+      playerRightArm.inverted = false;
+    }
+    if(keyCode == RIGHT)
+    {
+      playerRightArm.rotating = true;
+      playerRightArm.inverted = true;
+    }
   }
   if(screen == "final screen")
   {
     screen = "menu";
+  }
+}
+
+void keyReleased()
+{
+  if(screen == "game")
+  {
+    if(keyCode == LEFT || keyCode == RIGHT)
+    {
+      playerRightArm.rotating = false;
+    }
   }
 }
 

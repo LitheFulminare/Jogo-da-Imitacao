@@ -4,8 +4,9 @@ class PlayerRightArm // the body and the head don't move
   private int y;
   
   private float angle = 0;
-
-  private int dir = 1; // if rotates CW or CCW
+  
+  private boolean rotating = false;
+  private boolean inverted = false;
   
   //private int w = 100;
   //private int h = 100;
@@ -27,12 +28,20 @@ class PlayerRightArm // the body and the head don't move
   void render()
   {
     pushMatrix();
-      angle += 0.01;
+      if(rotating)
+      {
+        if(!inverted)
+        {
+          angle += 0.035;
+        }
+        else
+        {
+          angle -= 0.035;
+        }
+      }
       translate(x, y);
       rotate(angle);
-      image(playerRightArmImg, 0, 0);
+      image(playerRightArmImg, -20, 0); // x offset = -20 makes it centered relative to the joint
     popMatrix();
-    //rect(x,y,w,h);
   }
-  
 }
