@@ -10,12 +10,21 @@ int startTime;
 boolean victory = false;
 boolean gameover = false;
 
+PImage titleScreen;
+PImage gameScreen;
+PImage victoryScreen;
+PImage defeatScreen;
+
 MonsterBody monsterBody = new MonsterBody(200,200);
 
 void setup()
 {
   size(1020, 760);
   textSize(40);
+  titleScreen = loadImage("titleScreen.png");
+  gameScreen = loadImage("gameScreen.png");
+  defeatScreen = loadImage("defeatScreen.png");
+  victoryScreen = loadImage("victoryScreen.png");
 }
 
 void draw()
@@ -50,7 +59,8 @@ void render()
 
 void renderMenu()
 {
-  background(175,100,0);
+  //background(175,100,0);
+  image(titleScreen, 0, 0, width, height);  
 }
 
 void startGame() // called at the start of the game
@@ -78,15 +88,25 @@ void updateGame()
 
 void renderGame()
 {
-  background(0);
+  //background(0);
+  image(gameScreen, 0, 0, width, height);  
   text("Tempo restante: " + secondsDown, 40, 40);  
   monsterBody.render();
 }
 
 void renderFinalScreen()
 {
-  background(0,100,150);
-  text("perdeu paizão", 40, 40);
+  if(!victory)
+  {
+    image(defeatScreen, 0, 0, width, height);
+  }
+  else
+  {
+    image(victoryScreen, 0, 0, width, height);
+  }
+  //background(0,100,150);
+  
+  //text("perdeu paizão", 40, 40);
 }
 
 void keyPressed()
