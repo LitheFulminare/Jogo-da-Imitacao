@@ -30,7 +30,7 @@ class PlayerLeftArm // the body and the head don't move
     pushMatrix();
       if(rotating)
       {
-        if(!inverted)
+        if(!inverted) // depends on which arrow key the player is holding down
         {
           angle += 0.035;
         }

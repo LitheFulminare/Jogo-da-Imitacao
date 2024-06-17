@@ -155,15 +155,25 @@ void keyPressed()
       {
         playerRightArm.rotating = true;
         playerRightArm.inverted = false;
-      }      
+      }
+      if(selectedLimb == 2)
+      {
+        playerLeftArm.rotating = true;
+        playerLeftArm.inverted = false;
+      }
     }
     if(keyCode == RIGHT)
     {
-      if(selectedLimb == 2)
+      if(selectedLimb == 1)
       {
         playerRightArm.rotating = true;
         playerRightArm.inverted = true;
-      }     
+      }
+      if(selectedLimb == 2)
+      {
+        playerLeftArm.rotating = true;
+        playerLeftArm.inverted = false;
+      }
     }
     if(keyCode == ENTER)
     {

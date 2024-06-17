@@ -22,7 +22,7 @@ class PlayerBody // the body and the head don't move
   
   void render()
   {
-    image(playerBodyImg, x, y);
+    image(playerBodyImg, x, y); 
     //rect(x,y,w,h);
   }
 }
