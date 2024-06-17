@@ -1,5 +1,3 @@
-//MonsterBody(260,0); made the body centered relative to its bg
-
 String screen = "menu"; // starts on "menu", go to "game", ends on "final screen"
 
 // countdown timer
@@ -14,6 +12,9 @@ int selectedLimb = 1; // 1 = right arm, 2 = left arm
 boolean victory = false;
 boolean gameover = false;
 
+boolean rightMatches = false; // both arms have to match to trigger 'victory = true'
+boolean leftMatches = false;
+
 //boolean LDown = false;
 //boolean RDown = false;
 
@@ -23,16 +24,18 @@ PImage victoryScreen;
 PImage defeatScreen;
 
 PImage monsterBodyImg;
+PImage monsterRightArmImg;
 
 PImage playerBodyImg;
 PImage playerRightArmImg;
 PImage playerLeftArmImg;
 
 MonsterBody monsterBody = new MonsterBody(450,50);
+MonsterRightArm monsterRightArm = new MonsterRightArm(680, 310);
 
 PlayerBody playerBody = new PlayerBody(-70, 50);
 PlayerRightArm playerRightArm = new PlayerRightArm(160, 310);
-PlayerLeftArm playerLeftArm = new PlayerLeftArm(210, 310);
+PlayerLeftArm playerLeftArm = new PlayerLeftArm(340, 310);
 
 void setup()
 {
@@ -47,12 +50,13 @@ void setup()
   
   // monster sprites
   monsterBodyImg = loadImage("1- Tronco e Pernas.png");
+  monsterRightArmImg = loadImage("2- Braço direito.png");
   
   
   // player sprites
   playerBodyImg = loadImage("1- Tronco e Pernas Player.png");
   playerRightArmImg = loadImage("2- Braço direito player.png");
-  playerLeftArmImg = loadImage("");
+  playerLeftArmImg = loadImage("2- Braço esquerdo player.png");
 }
 
 void draw()
@@ -96,12 +100,13 @@ void startGame() // called at the start of the game
   screen = "game";
   startTime = millis();
   timer= millis();
+  
+  monsterRightArm.randomize();
 }
 
 void updateGame()
 {
   //int elapsedTime = millis() - startTime;
-  
   
   if (millis() - timer > interval) // when the countdown reaches 0, defeat
   {
@@ -111,6 +116,9 @@ void updateGame()
   }
   int elapsedSeconds = (millis() - startTime) / 1000;
   secondsDown = interval/1000 - elapsedSeconds;
+  
+  playerRightArm.update();
+  playerLeftArm.update();
 }
 
 void renderGame()
@@ -120,6 +128,7 @@ void renderGame()
   text("Tempo restante: " + secondsDown, 40, 40);  
   
   monsterBody.render();
+  monsterRightArm.render();
   
   playerBody.render();
   playerRightArm.render();
@@ -139,6 +148,21 @@ void renderFinalScreen()
   //background(0,100,150);
   
   //text("perdeu paizão", 40, 40);
+}
+
+void checkIfArmsMatch()
+{
+  //playerRightArm.angle = 2*PI; 
+  println("direito: " + playerRightArm.angle);
+  println("esquerdo: " + playerLeftArm.angle);
+      
+  if(playerRightArm.angle > monsterRightArm.angle - 0.1)
+  {
+    if(playerRightArm.angle < monsterRightArm.angle + 0.1)
+    {
+      println("direto bate");
+    }
+  }
 }
 
 void keyPressed()
@@ -172,25 +196,22 @@ void keyPressed()
       if(selectedLimb == 2)
       {
         playerLeftArm.rotating = true;
-        playerLeftArm.inverted = false;
+        playerLeftArm.inverted = true;
       }
     }
     if(keyCode == ENTER)
     {
-      //playerRightArm.angle = 2*PI; 
-      //println(playerRightArm.angle);
+      checkIfArmsMatch();
     }
-    if(keyCode == TAB)
+    if(keyCode == TAB) // switch selected limb
     {
       if(selectedLimb == 1)
       {
         selectedLimb = 2;
-        //println("new: " + selectedLimb);
       }
       else
       {
         selectedLimb = 1;
-        //println("new: " + selectedLimb);
       }
     }
   }
@@ -208,6 +229,7 @@ void keyReleased()
     if(keyCode == LEFT || keyCode == RIGHT)
     {
       playerRightArm.rotating = false;
+      playerLeftArm.rotating = false;
     }
   }
 }

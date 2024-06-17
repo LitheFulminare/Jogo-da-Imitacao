@@ -1,4 +1,4 @@
-class PlayerLeftArm // the body and the head don't move
+class PlayerLeftArm 
 {
   private int x; 
   private int y;
@@ -22,7 +22,14 @@ class PlayerLeftArm // the body and the head don't move
   
   void update()
   {
-    
+    if(angle > PI*2) // sets a angle cap. The if statments can make the angle = -0.034, that's not good
+    {
+      angle = PI*2;
+    }
+    if(angle < 0)
+    {
+      angle = 0;
+    }
   }
   
   void render()
@@ -32,11 +39,17 @@ class PlayerLeftArm // the body and the head don't move
       {
         if(!inverted) // depends on which arrow key the player is holding down
         {
-          angle += 0.035;
+          if(angle < PI*2) // prevents arm from going around multiple times
+          {
+            angle += 0.035;
+          }
         }
         else
         {
-          angle -= 0.035;
+          if(angle > 0) // prevents arm from going around multiple times
+          {
+            angle -= 0.035;
+          }
         }
       }
       translate(x, y);
