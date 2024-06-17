@@ -3,8 +3,8 @@ class MonsterBody // the body and the head don't move
   private int x; 
   private int y;
   
-  private int w = 100;
-  private int h = 100;
+  //private int w = 100;
+  //private int h = 100;
   
   
   
@@ -22,7 +22,7 @@ class MonsterBody // the body and the head don't move
   
   void render()
   {
-    image(monsterBodyImg, x, y, width, height);
+    image(monsterBodyImg, x, y);
     //rect(x,y,w,h);
   }
 }

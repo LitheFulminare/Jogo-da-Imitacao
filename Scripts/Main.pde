@@ -18,23 +18,34 @@ PImage victoryScreen;
 PImage defeatScreen;
 
 PImage monsterBodyImg;
-PImage playerBodyImg;
 
-MonsterBody monsterBody = new MonsterBody(260,0);
-PlayerBody playerBody = new PlayerBody(-260, 0);
+PImage playerBodyImg;
+PImage playerRightArmImg;
+
+MonsterBody monsterBody = new MonsterBody(450,50);
+
+PlayerBody playerBody = new PlayerBody(-70, 50);
+PlayerRightArm playerRightArm = new PlayerRightArm(600, 600);
 
 void setup()
 {
   size(1020, 760);
   textSize(40);
   
+  // backgrounds and screens
   titleScreen = loadImage("titleScreen.png");
   gameScreen = loadImage("gameScreen.png");
   defeatScreen = loadImage("defeatScreen.png");
   victoryScreen = loadImage("victoryScreen.png");
   
+  // monster sprites
   monsterBodyImg = loadImage("1- Tronco e Pernas.png");
+  
+  
+  // player sprites
   playerBodyImg = loadImage("1- Tronco e Pernas Player.png");
+  playerRightArmImg = loadImage("2- Braço direito player.png");
+  
 }
 
 void draw()
@@ -82,7 +93,6 @@ void startGame() // called at the start of the game
 
 void updateGame()
 {
-  
   //int elapsedTime = millis() - startTime;
   
   
@@ -101,8 +111,11 @@ void renderGame()
   //background(0);
   image(gameScreen, 0, 0, width, height);  
   text("Tempo restante: " + secondsDown, 40, 40);  
+  
   monsterBody.render();
+  
   playerBody.render();
+  playerRightArm.render();
 }
 
 void renderFinalScreen()
