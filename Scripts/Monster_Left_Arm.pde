@@ -1,4 +1,4 @@
-class MonsterRightArm
+class MonsterLeftArm
 {
   private int x; 
   private int y;
@@ -13,7 +13,7 @@ class MonsterRightArm
   
   
   
-  MonsterRightArm(int x, int y)
+  MonsterLeftArm(int x, int y)
   {
     this.x = x;
     this.y = y;
@@ -31,7 +31,7 @@ class MonsterRightArm
       //angle += 0.035;
       translate(x, y);
       rotate(angle);
-      image(monsterRightArmImg, -20, 0); // x offset = -20 makes it centered relative to the joint
+      image(monsterLeftArmImg, -20, 0); // x offset = -20 makes it centered relative to the joint
     popMatrix();
   }
   
