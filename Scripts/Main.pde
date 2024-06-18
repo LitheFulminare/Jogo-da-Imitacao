@@ -196,9 +196,9 @@ void checkIfArmsMatch()
   
   
   // tests if the angles match with a margin of error
-  if(playerRightArm.angle > monsterRightArm.angle - 0.1) 
+  if(playerRightArm.angle > monsterRightArm.angle - 0.2) 
   {
-    if(playerRightArm.angle < monsterRightArm.angle + 0.1)
+    if(playerRightArm.angle < monsterRightArm.angle + 0.2)
     {
       println("direto bate");
       rightMatches = true;
@@ -210,9 +210,9 @@ void checkIfArmsMatch()
     }
   }
   
-  if(playerLeftArm.angle > monsterLeftArm.angle - 0.1)
+  if(playerLeftArm.angle > monsterLeftArm.angle - 0.2)
   {
-    if(playerLeftArm.angle < monsterLeftArm.angle + 0.1)
+    if(playerLeftArm.angle < monsterLeftArm.angle + 0.2)
     {
       println("esquerdo bate");
       leftMatches = true;
